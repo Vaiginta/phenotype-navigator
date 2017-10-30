@@ -1,0 +1,111 @@
+.app-root {
+  .search-results {
+    display:table;
+    margin-top:20px;
+  }
+
+  .search-btn {
+    background-color:#f79b38;
+    width:150px;
+    height:20px;
+    text-align:center;
+    line-height:20px;
+    border-radius:10px;
+    display:inline-block;
+    margin-left:20px;
+
+    &:hover {
+      cursor:pointer;
+    }
+  }
+
+  .search-results-row {
+    display:table-row;
+  }
+  .search-results-cell {
+    display:table-cell;
+    width:200px;
+    border:1px solid black;
+    text-align:center;
+
+    &.header {
+      text-transform:uppercase;
+    }
+
+    &.relationship:hover {
+      cursor:pointer;
+    }
+  }
+}
+
+.bg {
+  background-color:rgba(0,0,0,0.5);
+  width:100%;
+  height:100%;
+  position:absolute;
+  right:0;
+  text-align:center;
+  z-index:1;
+}
+
+.siblings-table {
+  background-color:white;
+  border:2px solid black;
+  width:auto;
+  height:50%;
+  position:absolute;
+  margin:0 auto;
+  left:0;
+  right:0;
+  top:50%;
+  transform:translateY(-50%);
+  text-align:center;
+  z-index:2;
+  padding:15px;
+  overflow:scroll;
+
+  .close-btn {
+    position:absolute;
+    right:10px;
+    top:10px;
+    background-color:#f79b38;
+    width:50px;
+    height:50px;
+    text-align:center;
+    line-height:50px;
+    border-radius:50px;
+
+    &:hover {
+      cursor:pointer;
+    }
+  }
+
+  .parent {
+    div {
+      background-color:#4286f4;
+      border-radius:50px;
+      height:80px;
+      line-height:80px;
+      text-align:center;
+      font-size:12px;
+      display:inline;
+      padding:20px;
+    }
+  }
+  .children {
+    margin-top:50px;
+  }
+  .child {
+    display:inline;
+    margin-left:5px;
+    margin-right:5px;
+    overflow:hidden;
+    background-color:#c141f4;
+    padding:10px;
+    height:80px;
+    width:80px;
+    font-size:12px;
+    border-radius:50px;
+    text-align:center;
+  }
+}
