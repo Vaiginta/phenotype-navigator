@@ -7,7 +7,8 @@ import {
   SEARCH_TERM,
   SET_INPUT,
   GET_RELATIONSHIP,
-  CLOSE_SIBLINGS_TABLE
+  CLOSE_SIBLINGS_TABLE,
+  COMPARE_NODES
 } from '../action_types.js';
 
 export const initialState = Immutable.fromJS({
@@ -17,7 +18,8 @@ export const initialState = Immutable.fromJS({
   inputVal:'',
   siblings:[],
   parent:'',
-  relationshipTable:false
+  relationshipTable:false,
+  currentNode:{}
 });
 
 export const fetchData = (state, {data, path}) => {
@@ -48,13 +50,16 @@ export const closeSiblingsTable = (state, {}) => {
   return state.set('siblings', Immutable.fromJS([])).set('parent', '');
 }
 
-export const getRelationship = (state, {parentId}) => {
+export const getRelationship = (state, {val}) => {
   let children = state.get('data').filter(d =>
-    d['is_a'] === parentId
+    d['is_a'] === val['is_a']
   );
-  return state.set('siblings', children).set('parent', parentId);
+  return state
+          .set('siblings', children)
+          .set('parent', val['is_a'])
+          .set('currentNode', val)
+  ;
 };
-
 
 export default createReducer(
   initialState,

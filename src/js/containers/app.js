@@ -10,7 +10,8 @@ const mapStateToProps = state => {
     inputVal: state.getIn(['app', 'inputVal']),
     siblings: state.getIn(['app', 'siblings']),
     parent: state.getIn(['app', 'parent']),
-    relationshipTable: state.getIn(['app', 'relationshipTable'])
+    relationshipTable: state.getIn(['app', 'relationshipTable']),
+    currentNode: state.getIn(['app', 'currentNode'])
   }
 }
 

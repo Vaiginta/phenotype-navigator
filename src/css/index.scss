@@ -3,13 +3,12 @@
     display:table;
     margin-top:20px;
   }
-
   .search-btn {
     background-color:#f79b38;
     width:150px;
-    height:20px;
+    height:25px;
     text-align:center;
-    line-height:20px;
+    line-height:25px;
     border-radius:10px;
     display:inline-block;
     margin-left:20px;
@@ -96,16 +95,22 @@
     margin-top:50px;
   }
   .child {
-    display:inline;
+    display:inline-block;
     margin-left:5px;
     margin-right:5px;
     overflow:hidden;
     background-color:#c141f4;
     padding:10px;
-    height:80px;
-    width:80px;
+    height:30px;
+    line-height:30px;
+    width:auto;
     font-size:12px;
     border-radius:50px;
     text-align:center;
+    margin-top:20px;
+
+    &.current-node {
+      border:3px solid black;
+    }
   }
 }

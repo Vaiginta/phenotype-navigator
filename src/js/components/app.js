@@ -24,7 +24,9 @@ class App extends Component {
       closeSiblingsTable,
       relationshipTable,
       toggle,
-      searchResultsRelationshipTable
+      searchResultsRelationshipTable,
+      compareNodes,
+      currentNode
     } = this.props;
 
     let highlightSearchValue = (value) => {
@@ -43,7 +45,7 @@ class App extends Component {
         return value;
       }
     };
-    
+
     return (
       <div className='app-root'>
         {siblings.size !== 0 && <div className='bg'></div>}
@@ -55,7 +57,7 @@ class App extends Component {
             <div className='search-results-row'>
               <div className='search-results-cell header'>name</div>
               <div className='search-results-cell header'>synonym</div>
-              <div className='search-results-cell header'>relationship</div>
+              <div className='search-results-cell header'>graph</div>
             </div>
             { searchResults.map(val => {
                     return (
@@ -67,46 +69,35 @@ class App extends Component {
                           { val['synonym'] && highlightSearchValue(val['synonym']) }
                         </div>
                         <div className='search-results-cell relationship'>
-                          <div onClick={() => getRelationship(val['is_a'])}>get siblings</div>
-                          <div onClick={() => toggle('relationshipTable')}>see relationship with others</div>
+                          <div onClick={() => getRelationship(val)}>see a graph</div>
                         </div>
                       </div>
                     );
-                  } ) }
+              } ) }
             { siblings.size !== 0 &&
                 <div className='siblings-table'>
                   <div className='close-btn' onClick={closeSiblingsTable}>
                     close
                   </div>
-                  <div className='parent'>
-                    <div>{parent.split('!')[1]}</div>
-                  </div>
-                  <div className='children'>
-                    { siblings.map(s => {
-                        return (
-                          <div
-                            className='child'
-                          >
-                            {s['name']}
-                          </div>
-                        );
-                    })}
+                  <div>
+                    <div className='parent'>
+                      <div>{parent.split('!')[1]}</div>
+                    </div>
+                    <div className='children'>
+                      { siblings.map(s => {
+                          return (
+                            <div
+                              className = { 'child ' + (currentNode['name'] === s['name']
+                                && 'current-node') }
+                            >
+                              {s['name']}
+                            </div>
+                          );
+                      } ) }
+                    </div>
                   </div>
                 </div> }
-              { relationshipTable &&
-                <div className='siblings-table'>
-                  <div className='close-btn' onClick={() => toggle('relationshipTtable')}>
-                    close
-                  </div>
-                  find another node:
-                  <input onChange={e => setInput('anotherNode', e.target.value) } />
-                  <div onClick={() => searchTerm('searchResultsRelationshipTable', 'anotherNode')} className='search-btn'>search</div>
-                  <div>
-                    { searchResultsRelationshipTable.map(el =>
-                        <span onClick={() => compareNodes(el['name'])}>{el['name']}<br/></span>
-                      ) }
-                  </div>
-                </div>}
+
           </div> }
       </div>
     );

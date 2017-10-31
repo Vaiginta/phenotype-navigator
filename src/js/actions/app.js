@@ -4,10 +4,18 @@ import {
   SEARCH_TERM,
   SET_INPUT,
   GET_RELATIONSHIP,
-  CLOSE_SIBLINGS_TABLE
+  CLOSE_SIBLINGS_TABLE,
+  COMPARE_NODES
  } from '../action_types.js';
 
 import axios from 'axios';
+
+export const compareNodes = (anotherNode) => {
+  return {
+    type: COMPARE_NODES,
+    anotherNode
+  }
+}
 
 export const closeSiblingsTable = () => {
   return {
@@ -24,11 +32,11 @@ export const searchTerm = (path, inputPath) => {
  };
 };
 
-export const getRelationship = (parentId) => {
+export const getRelationship = (val) => {
 
   return {
     type: GET_RELATIONSHIP,
-    parentId
+    val
  };
 };
 
